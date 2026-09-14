@@ -5,8 +5,12 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import java.time.Duration;
 
 public class InventoryForm {
 
@@ -33,6 +37,9 @@ public class InventoryForm {
     @FindBy(id = "warranty-1yr")
     WebElement inputWarranty;
 
+    @FindBy(id = "discount-feedback")
+    WebElement discFeedback;
+
     @FindBy(id = "discount-code")
     WebElement discountCode;
 
@@ -47,6 +54,12 @@ public class InventoryForm {
 
     @FindBy(css = "button[id^='view-invoice-']")
     WebElement viewInvoiceBtn2;
+
+    @FindBy(id = "unit-price-value")
+    WebElement unitPriceValue;
+
+    @FindBy(id = "subtotal-value")
+    WebElement SubTotalPriceValue;
 
 
     public InventoryForm(WebDriver driver) {
@@ -77,9 +90,16 @@ public class InventoryForm {
         Thread.sleep(2000);
     }
 
-//    public String getUnitPrice1() {
-//        return driver.findElement((By) unitPrice1).getText();
-//    }
+    public void validateUnitPrice(String expectedPrice) {
+
+        String actualPrice = unitPriceValue.getText().trim();
+
+        Assert.assertEquals(
+                actualPrice,
+                expectedPrice,
+                "Unit price does not match."
+        );
+    }
 
     public void selectColor() {
         WebElement selectColorDropdown =
@@ -99,6 +119,17 @@ public class InventoryForm {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollTo(0, 500);");
         Thread.sleep(2000);
+    }
+
+    public void validateSubTotal(String expectedSubTotal) {
+
+        String actualPrice = SubTotalPriceValue.getText().trim();
+
+        Assert.assertEquals(
+                actualPrice,
+                expectedSubTotal,
+                "Sub Total does not match."
+        );
     }
 
     public void enterAddress(String address) {
@@ -135,10 +166,27 @@ public class InventoryForm {
         Thread.sleep(2000);
     }
 
+
     public void clickApplyBtn() throws InterruptedException {
 
         applyDiscBtn.click();
         Thread.sleep(2000);
+    }
+
+    public void verifyDiscountFeedback(String expectedText) {
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        wait.until(ExpectedConditions.textToBePresentInElement(
+                discFeedback,
+                expectedText
+        ));
+
+        Assert.assertEquals(
+                discFeedback.getText().trim(),
+                expectedText,
+                "Discount feedback text does not match."
+        );
     }
 
     public void scrollToTop3() throws InterruptedException {
@@ -167,7 +215,7 @@ public class InventoryForm {
 
     public void scrollToTop4() throws InterruptedException {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollTo(0, 500);");
+        js.executeScript("window.scrollTo(0, 250);");
         Thread.sleep(2000);
     }
 }

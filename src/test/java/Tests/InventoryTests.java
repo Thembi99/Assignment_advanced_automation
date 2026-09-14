@@ -75,108 +75,121 @@ public class InventoryTests extends base{
 //        Thread.sleep(2000);
     }
 
-//    @Test(priority = 11)
-//    public void getUnitPrice1() throws InterruptedException {
-//        inventoryForm.getUnitPrice1();
-//        Thread.sleep(2000);
-//        //takesScreenshots.takesSnapShot(driver,"dashboard page");
-//    }
-
     @Test(priority = 11)
+    public void getUnitPrice1() throws InterruptedException {
+        inventoryForm.validateUnitPrice("R480.00");
+        Thread.sleep(2000);
+        takesScreenshots.takesSnapShot(driver,"Verify first unit price");
+    }
+
+    @Test(priority = 12)
     public void selectColor() throws InterruptedException {
         inventoryForm.selectColor();
 //        Thread.sleep(2000);
     }
 
-    @Test(priority = 12)
+    @Test(priority = 13)
     public void enterQuantity() throws InterruptedException {
         inventoryForm.enterQuantity(2);
 //        Thread.sleep(2000);
         takesScreenshots.takesSnapShot(driver,"Inventory page updated with device details");
     }
 
-    @Test(priority = 13)
+    @Test(priority = 14)
     public void scrollTop() throws InterruptedException {
         inventoryForm.scrollToTop();
 //        Thread.sleep(2000);
         takesScreenshots.takesSnapShot(driver,"Unit price display");
     }
 
-    @Test(priority = 14)
+    @Test(priority = 15)
+    public void validateSubTotal() throws InterruptedException {
+        inventoryForm.validateSubTotal("R960.00");
+        Thread.sleep(2000);
+        takesScreenshots.takesSnapShot(driver,"Verify Sub Total");
+    }
+
+    @Test(priority = 16)
     public void enterAddress() throws InterruptedException {
         inventoryForm.enterAddress("123 Test Street");
 //        Thread.sleep(2000);
     }
 
-    @Test(priority = 15)
+    @Test(priority = 17)
     public void nextBtn() throws InterruptedException {
         inventoryForm.nextBtn();
 //        Thread.sleep(2000);
         takesScreenshots.takesSnapShot(driver,"Inventory continuation");
     }
 
-    @Test(priority = 16)
+    @Test(priority = 18)
     public void enterShippingMethod() throws InterruptedException {
         inventoryForm.enterShippingMethod();
 //        Thread.sleep(2000);
     }
 
-    @Test(priority = 17)
+    @Test(priority = 19)
     public void enterWarranty() throws InterruptedException {
         inventoryForm.enterWarranty();
 //        Thread.sleep(2000);
     }
 
-    @Test(priority = 18)
+    @Test(priority = 20)
     public void enterDiscountCode() throws InterruptedException {
         inventoryForm.enterDiscountCode("SAVE10");
 //        Thread.sleep(2000);
         takesScreenshots.takesSnapShot(driver,"All details entered");
     }
 
-    @Test(priority = 19)
+    @Test(priority = 21)
     public void scrollTop2() throws InterruptedException {
         inventoryForm.scrollToTop2();
 //        Thread.sleep(2000);
     }
 
-    @Test(priority = 20)
+    @Test(priority = 22)
     public void clickApplyBtn() throws InterruptedException {
         inventoryForm.clickApplyBtn();
 //        Thread.sleep(2000);
         takesScreenshots.takesSnapShot(driver,"Shipping details");
     }
 
-    @Test(priority = 21)
-    public void scrollTop3() throws InterruptedException {
-        inventoryForm.scrollToTop3();
-//        Thread.sleep(2000);
+    @Test(priority = 23)
+    public void verifyDiscountCode() throws InterruptedException {
+        inventoryForm.verifyDiscountFeedback("Code SAVE10 applied: -10%");
+        takesScreenshots.takesSnapShot(driver,"Discount code applied");
     }
 
-    @Test(priority = 22)
+    @Test(priority = 24)
+    public void scrollTop3() throws InterruptedException {
+        inventoryForm.scrollToTop3();
+
+    }
+
+    @Test(priority = 25)
     public void clickConfirmPurchase() throws InterruptedException {
         inventoryForm.confirmPurchaseBtn();
 //        Thread.sleep(2000);
     }
 
-    @Test(priority = 23)
+    @Test(priority = 26)
     public void clickViewInvoice() throws InterruptedException {
         inventoryForm.clickViewInvoice();
         Thread.sleep(2000);
         takesScreenshots.takesSnapShot(driver,"Display of invoice");
     }
 
-    @Test(priority = 24)
+    @Test(priority = 27)
     public void clickViewInvoice2() throws InterruptedException {
         inventoryForm.clickViewInvoice2();
-//        Thread.sleep(2000);
+        Thread.sleep(2000);
         takesScreenshots.takesSnapShot(driver,"Display of final invoice");
     }
 
-    @Test(priority = 25)
+    @Test(priority = 28)
     public void scrollTop4() throws InterruptedException {
-        inventoryForm.scrollToTop3();
-//        Thread.sleep(2000);
-        //takesScreenshots.takesSnapShot(driver,"dashboard page");
+        inventoryForm.scrollToTop4();
+        Thread.sleep(2000);
+
     }
 }
